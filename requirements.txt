@@ -5,3 +5,4 @@ mlflow
 hydra-core
 optuna
 scikit-learn
+jupyter
