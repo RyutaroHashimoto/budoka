@@ -1,1 +1,7 @@
 pandas
+numpy
+kedro
+mlflow
+hydra-core
+optuna
+scikit-learn
