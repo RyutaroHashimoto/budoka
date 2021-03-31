@@ -7,3 +7,4 @@ optuna
 scikit-learn
 jupyter
 jupyterlab
+kedro-viz
