@@ -1,0 +1,15 @@
+version: '3'
+
+
+services:
+  app:
+    build: .
+    ports:
+      - "8888:8888" # jupyter lab
+      - "5000:5000" # mlflow ui
+      - "4141:4141" # kedro viz
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+    volumes:
+      - .:/code
+    tty: true
