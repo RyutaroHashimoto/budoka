@@ -14,6 +14,7 @@
 - http://0.0.0.0:8888/
 
 ## MLFlow UI
-- mlflow ui --host 0.0.0
+- mlflow ui --host 0.0.0.0
 - http://0.0.0.0:5000/
+- localhost:5000
 
