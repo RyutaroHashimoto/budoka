@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  app:
+  datascience:
     build: .
     ports:
       - "8888:8888" # jupyter lab
@@ -13,3 +13,4 @@ services:
       - .:/code
     user: root
     tty: true
+    container_name: budoka-container
