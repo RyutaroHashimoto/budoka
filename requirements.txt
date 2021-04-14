@@ -1,10 +1,1 @@
-pandas
-numpy
-kedro
-mlflow
-hydra-core
-optuna
-scikit-learn
-jupyter
-jupyterlab
-kedro-viz
+lightgbm
