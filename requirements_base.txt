@@ -1,10 +1,13 @@
-pandas
-numpy
+# Tools
 kedro
 mlflow
 hydra-core
 optuna
-scikit-learn
 jupyter
 jupyterlab
 kedro-viz
+
+# Basic Library
+pandas
+numpy
+scikit-learn
