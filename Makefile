@@ -17,13 +17,13 @@ all: shell
 
 build: .build.docker
 
-.build.docker: docker-compose.yml ./docker/Dockerfile requirements.txt
-	docker-compose  build
+.build.docker: ./docker/docker-compose.yml ./docker/Dockerfile requirements.txt
+	docker-compose -f ./docker/docker-compose.yml build
 
 up: .up.docker
 
 .up.docker: build
-	docker-compose  up -d
+	docker-compose  -f ./docker/docker-compose.yml up -d
 
 shell: up
 	@echo "\n     launching the shell in container. type 'exit' to finish \n"
@@ -31,12 +31,12 @@ shell: up
 
 jupyternotebook: up
 	@echo "\n     launching jupyternotebook \n"
-	@echo "    To access jupyterlab, access the URL showing later as usual"
+	@echo "    To access jupyterlab, access the URL showing later as usual \n"
 	docker exec -it budoka-container jupyter notebook --ip='0.0.0.0' --allow-root
 
 jupyterlab: up
 	@echo "\n     launching jupyterlab \n"
-	@echo "    To access jupyterlab, access the URL showing later as usual"
+	@echo "    To access jupyterlab, access the URL showing later as usual \n"
 	docker exec -it budoka-container jupyter lab --ip='0.0.0.0' --allow-root
 
 mlflow: up
@@ -49,12 +49,12 @@ both: up
 	docker exec -it budoka-container bash -c "jupyter lab --ip='0.0.0.0' --allow-root & mlflow ui --host 0.0.0.0"
 
 stop:
-	docker-compose stop
+	docker-compose -f ./docker/docker-compose.yml stop
 
 restart:
-	docker-compose stop
-	docker-compose  up -d
+	docker-compose -f ./docker/docker-compose.yml stop
+	docker-compose  -f ./docker/docker-compose.yml up -d
 
 clean:
-	docker-compose down --rmi all --volumes --remove-orphans
+	docker-compose -f ./docker/docker-compose.yml down --rmi all --volumes --remove-orphans
 	rm -f .build.docker .up.docker
