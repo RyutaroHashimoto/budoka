@@ -12,7 +12,7 @@ services:
     environment:
       - JUPYTER_ENABLE_LAB=yes
     volumes:
-      - ./:/code
+      - ./:/root/code
     user: root
     stdin_open: true # docker run -i
     tty: true        # docker run -t

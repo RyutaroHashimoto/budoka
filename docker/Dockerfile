@@ -13,12 +13,10 @@ RUN apt-get update \
 
 COPY ./docker/requirements_base.txt /
 
-# RUN pip install --no-cache-dir --ignore-installed -r requirements_base.txt
 RUN pip install --ignore-installed -r requirements_base.txt
 
 COPY requirements.txt /
 
 RUN pip install --no-cache-dir --ignore-installed -r requirements.txt
 
-
-WORKDIR ./code
+WORKDIR ./root/code
