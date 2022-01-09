@@ -13,10 +13,13 @@ RUN apt-get update \
 
 COPY ./docker/requirements_base.txt /
 
-RUN pip install --ignore-installed -r requirements_base.txt
+RUN pip install --no-cache-dir -r requirements_base.txt
 
 COPY requirements.txt /
 
 RUN pip install --no-cache-dir --ignore-installed -r requirements.txt
+
+# For tensorflow in M1 Mac
+# RUN pip install --no-cache-dir --ignore-installed tensorflow -f https://tf.kmtea.eu/whl/stable.html
 
 WORKDIR ./root/code
