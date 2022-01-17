@@ -199,3 +199,6 @@ fabric.properties
 
 # Remove DS_Store Files on MacOS
 .DS_Store
+
+# VS Code
+.vscode
