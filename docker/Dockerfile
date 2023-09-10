@@ -1,25 +1,30 @@
-# Choose version
-FROM python:3.8.5
-
+FROM python:3.10.0
 ENV PYTHONUNBUFFERED=1
 
 RUN apt-get update \
     && apt-get upgrade -y \
-    # delete cash to reduce size of image
+    # Rのインストール
+    && apt-get install -y r-base \
+    # imageのサイズを小さくするためにキャッシュ削除
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
-    # update pip
+    # pipのアップデート
     && pip install --upgrade pip
 
-COPY ./docker/requirements_base.txt /
+# Poetryのインストール
+RUN pip install poetry
 
-RUN pip install --no-cache-dir -r requirements_base.txt
+# # pyproject.tomlとpoetry.lockをコピー
+COPY pyproject.toml poetry.lock ./
 
-COPY requirements.txt /
+# # 依存関係のインストール
+RUN poetry config virtualenvs.create false \
+    && poetry install
 
-RUN pip install --no-cache-dir --ignore-installed -r requirements.txt
-
-# For tensorflow in M1 Mac
-# RUN pip install --no-cache-dir --ignore-installed tensorflow -f https://tf.kmtea.eu/whl/stable.html
+RUN R -e "install.packages('IRkernel')
+RUN R -e "IRkernel::installspec(user = FALSE)"
 
 WORKDIR ./root/code
+
+
+
