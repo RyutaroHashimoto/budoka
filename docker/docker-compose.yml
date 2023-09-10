@@ -1,0 +1,22 @@
+version: '1'
+
+services:
+  datascience:
+    build:
+      context: ../
+      dockerfile: ./docker/Dockerfile
+    ports:
+      - "8888:8888" # jupyter (lab)
+      - "5001:5000" # mlflow ui
+      - "4141:4141" # kedro viz
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+    volumes:
+      - ../src:/root/code
+    user: root
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    container_name: budoka-container
+
+    # If you want to run the same application when container is launched
+    # command: jupyter lab --ip='0.0.0.0' --allow-root
