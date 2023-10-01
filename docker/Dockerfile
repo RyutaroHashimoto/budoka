@@ -21,8 +21,8 @@ COPY pyproject.toml poetry.lock ./
 RUN poetry config virtualenvs.create false \
     && poetry install
 
-RUN R -e "install.packages('IRkernel')"
-RUN R -e "IRkernel::installspec(user = FALSE)"
+# RUN R -e "install.packages('IRkernel')"
+# RUN R -e "IRkernel::installspec(user = FALSE)"
 
 WORKDIR ./root/code
 
