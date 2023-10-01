@@ -13,6 +13,9 @@ services:
       - JUPYTER_ENABLE_LAB=yes
     volumes:
       - ../src:/root/code
+      - ../pyproject.toml:/root/pyproject.toml
+      - ../poetry.lock:/root/poetry.lock
+      - ../config/jupyterlab:/root/.jupyter
     user: root
     stdin_open: true # docker run -i
     tty: true        # docker run -t
